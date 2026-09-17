@@ -1,10 +1,140 @@
-import telebot
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#0b0b0d">
+<title>Wizaksi Web</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;min-height:100%;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#08090b;color:#fff}body{overflow-x:hidden}button,textarea{font:inherit}button{border:0;cursor:pointer;color:#fff}.bg{position:fixed;inset:0;overflow:hidden;pointer-events:none;background:radial-gradient(circle at 15% 10%,#303238 0,transparent 28%),radial-gradient(circle at 90% 80%,#202126 0,transparent 30%),#08090b}.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.22;animation:float 9s ease-in-out infinite}.o1{width:230px;height:230px;background:#fff;top:-100px;left:-80px}.o2{width:280px;height:280px;background:#777;right:-140px;top:30% ;animation-delay:-3s}.o3{width:200px;height:200px;background:#aaa;left:30%;bottom:-120px;animation-delay:-6s}@keyframes float{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(20px,-25px,0) scale(1.12)}}.app{position:relative;width:min(100%,520px);margin:auto;min-height:100vh;padding:20px 16px 105px}.top{display:flex;align-items:center;justify-content:space-between;margin:3px 2px 28px;animation:drop .7s cubic-bezier(.2,.8,.2,1)}@keyframes drop{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:none}}.brand{font-size:25px;font-weight:900;letter-spacing:-1px}.brand span{color:#aaa}.admin-dot{display:none;width:9px;height:9px;background:#fff;border-radius:50%;box-shadow:0 0 15px #fff;margin-left:7px}.hero{padding:28px 22px;border:1px solid #292b30;border-radius:27px;background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.025));box-shadow:0 25px 80px #0008,inset 0 1px #fff1;backdrop-filter:blur(20px);animation:hero .8s cubic-bezier(.2,.8,.2,1)}@keyframes hero{from{opacity:0;transform:translateY(25px) scale(.97)}to{opacity:1;transform:none}}.hero h1{font-size:36px;line-height:1.02;letter-spacing:-2px;margin:0 0 12px}.hero p{margin:0;color:#a5a7ad;line-height:1.5;font-size:15px}.section-title{font-size:14px;color:#8f9299;margin:28px 3px 12px;font-weight:700;text-transform:uppercase;letter-spacing:1.3px}.services{display:grid;gap:11px}.service{position:relative;display:flex;align-items:center;gap:15px;padding:18px;border:1px solid #292b30;border-radius:20px;background:#111216;transition:.35s cubic-bezier(.2,.8,.2,1);overflow:hidden}.service:before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent,#fff1,transparent);transform:translateX(-110%);transition:.7s}.service:active{transform:scale(.97)}.service:hover{border-color:#555;transform:translateY(-2px)}.service:hover:before{transform:translateX(110%)}.icon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:#e9e9ea;color:#111;font-size:22px;box-shadow:0 7px 25px #0007;flex:none}.service h3{margin:0 0 4px;font-size:16px}.service p{margin:0;color:#85878d;font-size:13px}.arrow{margin-left:auto;color:#777;font-size:22px;transition:.3s}.service:hover .arrow{transform:translateX(5px);color:#fff}.screen{display:none;animation:page .45s cubic-bezier(.2,.8,.2,1)}.screen.active{display:block}@keyframes page{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}.back{display:flex;align-items:center;gap:8px;background:transparent;color:#aaa;padding:8px 2px;margin-bottom:18px;font-size:14px}.form-card,.admin-card{border:1px solid #292b30;background:linear-gradient(145deg,#151619,#0d0e10);border-radius:25px;padding:21px;box-shadow:0 20px 55px #0008}.form-card h2{font-size:25px;margin:0 0 6px;letter-spacing:-1px}.form-card .sub{color:#888b91;font-size:14px;margin-bottom:22px}.label{display:block;font-size:13px;color:#aaa;margin:0 0 9px}textarea{width:100%;min-height:180px;resize:none;background:#090a0c;color:#fff;border:1px solid #292b30;border-radius:17px;padding:16px;outline:none;line-height:1.5;transition:.3s}textarea:focus{border-color:#777;box-shadow:0 0 0 4px #fff08}textarea::placeholder{color:#55575c}.send{width:100%;height:55px;margin-top:13px;border-radius:17px;background:#f3f3f3;color:#090a0c;font-weight:850;transition:.3s;box-shadow:0 10px 30px #fff1}.send:active{transform:scale(.97)}.send:hover{background:#fff;box-shadow:0 10px 35px #fff3}.success{display:none;text-align:center;padding:35px 10px}.success.show{display:block}.check{width:65px;height:65px;border-radius:50%;margin:0 auto 17px;background:#eee;color:#111;display:grid;place-items:center;font-size:30px;animation:pop .5s}.success h2{margin:0 0 8px}.success p{color:#85878d;margin:0;line-height:1.5}@keyframes pop{0%{transform:scale(.3);opacity:0}80%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}.nav{position:fixed;z-index:20;bottom:16px;left:50%;transform:translateX(-50%);width:min(calc(100% - 28px),490px);height:67px;padding:6px;display:flex;gap:5px;border:1px solid #292b30;border-radius:23px;background:#111216eF;backdrop-filter:blur(25px);box-shadow:0 15px 50px #000b}.nav button{flex:1;background:transparent;border-radius:18px;color:#686b72;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10px;transition:.3s}.nav button b{font-size:21px;font-weight:500}.nav button.active{background:#eee;color:#0b0c0e;box-shadow:0 5px 20px #fff2}.nav button:active{transform:scale(.9)}#adminNav{display:none}.list{display:grid;gap:10px}.request{padding:17px;border:1px solid #292b30;border-radius:19px;background:#121316;transition:.3s;animation:item .4s both}.request:active{transform:scale(.98)}.request-top{display:flex;justify-content:space-between;gap:10px}.type{font-weight:800}.date{font-size:11px;color:#666}.user{font-size:13px;color:#aaa;margin-top:7px}.preview{color:#777;font-size:13px;margin-top:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.empty{text-align:center;padding:55px 20px;color:#65676d}.empty-icon{font-size:35px;margin-bottom:10px}.detail{display:none}.detail.show{display:block}.detail .box{padding:19px;border:1px solid #292b30;background:#121316;border-radius:20px;margin-bottom:10px}.detail .key{font-size:11px;text-transform:uppercase;color:#666;letter-spacing:1px;margin-bottom:6px}.detail .value{font-size:15px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}.toast{position:fixed;z-index:50;left:50%;bottom:96px;transform:translate(-50%,20px);padding:13px 18px;border-radius:15px;background:#eee;color:#111;font-size:13px;font-weight:700;opacity:0;pointer-events:none;transition:.35s;box-shadow:0 10px 35px #0008}.toast.show{opacity:1;transform:translate(-50%,0)}@keyframes item{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}.user-card{display:flex;align-items:center;gap:13px;padding:18px;border:1px solid #292b30;border-radius:21px;background:#121316}.avatar{width:48px;height:48px;border-radius:50%;background:#eee;color:#111;display:grid;place-items:center;font-size:20px;font-weight:800;overflow:hidden}.avatar img{width:100%;height:100%;object-fit:cover}.username{font-weight:800}.userid{font-size:12px;color:#666;margin-top:3px}.stat{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:11px}.stat div{padding:16px;border:1px solid #292b30;border-radius:18px;background:#111216}.stat strong{font-size:24px;display:block}.stat span{font-size:12px;color:#777}@media(max-width:360px){.hero h1{font-size:31px}.app{padding-left:12px;padding-right:12px}}
+</style>
+</head>
+<body>
+<div class="bg"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i></div>
+<div class="app">
+<header class="top"><div class="brand">wizaksi <span>web</span><i class="admin-dot" id="adminDot"></i></div></header>
 
-TOKEN="8992029515:AAGGGlKKqttCIDcfLzsRmI4jyfMZVLaLipQ"
-bot=telebot.TeleBot(TOKEN)
+<main id="home" class="screen active">
+<section class="hero"><h1>Создадим<br>что-то крутое.</h1><p>Опишите идею сайта, бота или Telegram Mini App — мы изучим задачу и свяжемся с вами.</p></section>
+<div class="section-title">Выберите услугу</div>
+<div class="services">
+<div class="service" onclick="openForm('Сайт','🌐')"><div class="icon">◉</div><div><h3>Сайт</h3><p>Лендинг, магазин, сервис или веб-проект</p></div><div class="arrow">›</div></div>
+<div class="service" onclick="openForm('Telegram-бот','🤖')"><div class="icon">✦</div><div><h3>Telegram-бот</h3><p>Автоматизация, заявки, продажи и сервисы</p></div><div class="arrow">›</div></div>
+<div class="service" onclick="openForm('Telegram Mini App','▣')"><div class="icon">⌁</div><div><h3>Telegram Mini App</h3><p>Современное приложение внутри Telegram</p></div><div class="arrow">›</div></div>
+</div>
+</main>
 
-@bot.message_handler(commands=["start"])
-def start(message):
-    bot.send_message(message.chat.id,"Зайдите в Mini-apps подайте анкету и в ближайшее время мы свяжемся с вами и обговорим создание проекта")
+<main id="form" class="screen">
+<button class="back" onclick="goHome()">‹ Назад</button>
+<div class="form-card" id="formCard">
+<h2 id="formTitle">Сайт</h2><div class="sub">Расскажите, что вы хотите получить.</div>
+<label class="label">Описание проекта</label>
+<textarea id="description" maxlength="5000" placeholder="Например: нужен современный сайт магазина смартфонов. Опишите тему, функции, стиль, страницы и всё, что считаете важным..."></textarea>
+<button class="send" onclick="submitRequest()">Подать анкету</button>
+<div class="success" id="success"><div class="check">✓</div><h2>Анкета отправлена</h2><p>Спасибо! Ваша заявка сохранена.<br>С вами свяжутся после ознакомления.</p></div>
+</div>
+</main>
 
-bot.infinity_polling()
+<main id="profile" class="screen">
+<section class="hero"><h1>Профиль</h1><p>Ваши данные из Telegram и история отправленных анкет.</p></section>
+<div style="height:13px"></div>
+<div class="user-card"><div class="avatar" id="avatar">U</div><div><div class="username" id="username">@user</div><div class="userid" id="userid">Telegram ID: —</div></div></div>
+<div class="stat"><div><strong id="myCount">0</strong><span>Анкет отправлено</span></div><div><strong>3</strong><span>Услуги доступны</span></div></div>
+</main>
+
+<main id="admin" class="screen">
+<section class="hero"><h1>Заявки</h1><p>Все анкеты пользователей, сохранённые на этом устройстве.</p></section>
+<div style="height:16px"></div>
+<div id="requestList" class="list"></div>
+<div id="detail" class="detail"></div>
+</main>
+
+<nav class="nav">
+<button class="active" id="homeNav" onclick="showScreen('home',this)"><b>⌂</b>Главная</button>
+<button onclick="showScreen('profile',this)"><b>○</b>Профиль</button>
+<button id="adminNav" onclick="showScreen('admin',this)"><b>≡</b>Заявки</button>
+</nav>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const tg=window.Telegram?.WebApp;
+if(tg){tg.ready();tg.expand();try{tg.setHeaderColor("#08090b");tg.setBackgroundColor("#08090b")}catch(e){}}
+
+const ADMIN_ID="123456789";
+let currentType="";
+let requests=JSON.parse(localStorage.getItem("wizaksi_requests")||"[]");
+const user=tg?.initDataUnsafe?.user||{};
+const uid=String(user.id||"");
+const isAdmin=uid&&uid===ADMIN_ID;
+
+function $(id){return document.getElementById(id)}
+function save(){localStorage.setItem("wizaksi_requests",JSON.stringify(requests))}
+function showScreen(id,btn){
+document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));
+$(id).classList.add("active");
+document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));
+if(btn)btn.classList.add("active");
+if(id==="admin")renderRequests();
+window.scrollTo({top:0,behavior:"smooth"});
+}
+function openForm(type){
+currentType=type;
+$("formTitle").textContent=type;
+$("description").value="";
+$("formCard").querySelector("textarea").style.display="block";
+$("formCard").querySelector(".send").style.display="block";
+$("success").classList.remove("show");
+showScreen("form");
+}
+function goHome(){showScreen("home",$("homeNav"))}
+function submitRequest(){
+const text=$("description").value.trim();
+if(text.length<5){toast("Опишите проект подробнее");$("description").focus();return}
+const r={
+id:Date.now(),
+type:currentType,
+description:text,
+userId:user.id||"—",
+username:user.username?("@"+user.username):(user.first_name||"Пользователь"),
+firstName:user.first_name||"",
+lastName:user.last_name||"",
+date:new Date().toLocaleString("ru-RU"),
+status:"Новая"
+};
+requests.unshift(r);save();
+$("description").style.display="none";
+$("formCard").querySelector(".send").style.display="none";
+$("success").classList.add("show");
+$("myCount").textContent=requests.filter(x=>String(x.userId)===uid).length;
+toast("Анкета отправлена");
+}
+function renderProfile(){
+$("username").textContent=user.username?("@"+user.username):(user.first_name||"Пользователь");
+$("userid").textContent="Telegram ID: "+(user.id||"—");
+$("myCount").textContent=requests.filter(x=>String(x.userId)===uid).length;
+if(user.photo_url)$("avatar").innerHTML='<img src="'+user.photo_url+'">';
+else $("avatar").textContent=(user.first_name||"U").charAt(0).toUpperCase();
+}
+function renderRequests(){
+const list=$("requestList"),detail=$("detail");
+detail.classList.remove("show");detail.innerHTML="";
+if(!isAdmin){list.innerHTML='<div class="empty"><div class="empty-icon">⌁</div>Доступ закрыт</div>';return}
+if(!requests.length){list.innerHTML='<div class="empty"><div class="empty-icon">□</div>Пока нет заявок</div>';return}
+list.innerHTML=requests.map(r=>`<div class="request" onclick="openRequest(${r.id})"><div class="request-top"><div class="type">${esc(r.type)}</div><div class="date">${esc(r.date)}</div></div><div class="user">${esc(r.username)}</div><div class="preview">${esc(r.description)}</div></div>`).join("");
+}
+function openRequest(id){
+const r=requests.find(x=>x.id===id);if(!r)return;
+$("requestList").style.display="none";
+$("detail").classList.add("show");
+$("detail").innerHTML=`<button class="back" onclick="renderRequests()">‹ Все заявки</button><div class="box"><div class="key">Услуга</div><div class="value">${esc(r.type)}</div></div><div class="box"><div class="key">Пользователь</div><div class="value">${esc(r.username)}</div></div><div class="box"><div class="key">Telegram ID</div><div class="value">${esc(String(r.userId))}</div></div><div class="box"><div class="key">Дата</div><div class="value">${esc(r.date)}</div></div><div class="box"><div class="key">Описание проекта</div><div class="value">${esc(r.description)}</div></div>`;
+}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+let toastTimer;
+function toast(t){$("toast").textContent=t;$("toast").classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>$("toast").classList.remove("show"),2200)}
+if(isAdmin){$("adminNav").style.display="flex";$("adminDot").style.display="inline-block"}
+renderProfile();
+</script>
+</body>
+</html>
