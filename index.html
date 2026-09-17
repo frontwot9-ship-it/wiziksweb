@@ -1,0 +1,10 @@
+import telebot
+
+TOKEN="8992029515:AAGGGlKKqttCIDcfLzsRmI4jyfMZVLaLipQ"
+bot=telebot.TeleBot(TOKEN)
+
+@bot.message_handler(commands=["start"])
+def start(message):
+    bot.send_message(message.chat.id,"Зайдите в Mini-apps подайте анкету и в ближайшее время мы свяжемся с вами и обговорим создание проекта")
+
+bot.infinity_polling()
